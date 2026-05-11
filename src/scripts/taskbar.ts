@@ -8,6 +8,30 @@ const contextMenu = ContextMenu.getInstance();
 
 let draggedItem: HTMLElement | null = null;
 
+const bottomWrapper = document.getElementById("bottom-wrapper");
+
+const updateDockMagnification = (mouseX: number) => {
+    const items = taskbar?.querySelectorAll<HTMLElement>(".taskbar-item");
+    items?.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const horizontalDistance = Math.abs(mouseX - centerX);
+        const verticalBias = Math.max(0.5, 1 - Math.abs(window.innerHeight - centerY) / window.innerHeight);
+        const distance = horizontalDistance / verticalBias;
+        item.style.setProperty("--dock-distance", `${distance}`);
+    });
+};
+
+bottomWrapper?.addEventListener("mousemove", (e) => {
+    updateDockMagnification(e.clientX);
+});
+
+bottomWrapper?.addEventListener("mouseleave", () => {
+    const items = taskbar?.querySelectorAll<HTMLElement>(".taskbar-item");
+    items?.forEach((item) => item.style.setProperty("--dock-distance", "999"));
+});
+
 // Handle dropping in the taskbar container (empty space)
 taskbar?.addEventListener("dragover", (e) => {
     e.preventDefault();

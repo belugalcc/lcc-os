@@ -1,7 +1,6 @@
 ---
 import Layout from "../Layouts/Layout.astro";
 import Background from "../components/background.astro";
-import BoltIcon from "../components/boltIcon.astro";
 import time from "../scripts/time.ts";
 ---
 
@@ -58,7 +57,7 @@ import time from "../scripts/time.ts";
 
 			<div id="top-wrapper">
 				<div id="top">
-					<h1 id="main-title">Bolt</h1>
+					<h1 id="main-title">LCC OS</h1>
 					<h2 id="greeting"></h2>
 					<h3 id="time">{time}</h3>
 				</div>
@@ -101,13 +100,13 @@ import time from "../scripts/time.ts";
 				</div>
 				<div id="app-menu">
 					<div id="app-menu-header">
-						<h1 id="app-menu-title">Bolt Apps</h1>
+						<h1 id="app-menu-title">LCC OS Apps</h1>
 					</div>
 					<div id="apps-grid"></div>
 				</div>
 				<div id="taskbar">
 					<div id="taskbar-left">
-						<div id="app-menu-button"><BoltIcon /></div>
+						<div id="app-menu-button" aria-label="LCC OS menu"><span class="lcc-badge">LCC</span></div>
 					</div>
 					<div id="taskbar-right"></div>
 				</div>
